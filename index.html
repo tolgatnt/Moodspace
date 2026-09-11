@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moodspace — Mood Check-In</title>
+<title>Moodspace — Mood Check-In Prototype</title>
 <style>
   :root{
     --bg:#f3faff; --card:#ffffff; --text:#172033; --muted:#64748b;
@@ -79,7 +79,31 @@
   .history{margin-top:20px}.history-item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:13px 0;font-size:13px}
   .pill{font-size:11px;padding:5px 9px;border-radius:99px;background:#f1f5f9;color:#475569}
   .full{grid-column:1/-1}
-  @media(max-width:900px){.app{grid-template-columns:1fr}aside{position:relative;height:auto;padding:15px;display:flex;align-items:center;justify-content:space-between}.brand{padding:0}nav{display:none}.side-note{display:none}main{padding:20px}.grid{grid-template-columns:1fr}}
+    .thoughtspace-link{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;margin-top:14px;padding:11px 14px;
+    border:1px solid #cfe8ff;border-radius:14px;
+    background:linear-gradient(135deg,#eaf6ff,#d8efff);
+    color:#1672b8;text-decoration:none;font-weight:800;font-size:13px;
+    box-shadow:0 4px 12px rgba(40,140,210,.12);
+    transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+    box-sizing:border-box;
+  }
+  .thoughtspace-link:hover{
+    transform:translateY(-2px);
+    box-shadow:0 7px 18px rgba(40,140,210,.18);
+    background:linear-gradient(135deg,#dff2ff,#cceaff);
+  }
+  .thoughtspace-link span{font-size:16px}
+  .thoughtspace-description{
+    margin:9px auto 0;
+    max-width:520px;
+    text-align:center;
+    color:#64748b;
+    font-size:11px;
+    line-height:1.5;
+  }
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{position:relative;height:auto;padding:15px;display:flex;align-items:center;justify-content:space-between}.brand{padding:0}nav{display:none}.side-note{display:none}main{padding:20px}.grid{grid-template-columns:1fr}}
   @media(max-width:600px){.moods{grid-template-columns:repeat(3,1fr)}.chart-wrap{grid-template-columns:1fr}.pie{width:280px;height:280px;margin:auto}.pie:after{inset:70px}.week{gap:4px}.day{padding:9px 2px}}
 </style>
 </head>
@@ -89,11 +113,6 @@
   <div>
     <div class="brand">mood<span>space</span></div>
     <nav>
-      <button class="active">◉ Dashboard</button>
-      <button>＋ Check In</button>
-      <button>◷ Mood History</button>
-      <button>◌ Insights</button>
-      <button>⚙ Settings</button>
     </nav>
   </div>
   <div class="side-note">A simple private space to notice how your week feels.</div>
@@ -124,6 +143,12 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <a class="thoughtspace-link" href="https://tolgatnt.github.io/Thoughtspace/" target="_blank" rel="noopener noreferrer" aria-label="Open Thoughtspace">
+        <span>✦</span> Thoughtspace
+      </a>
+      <div class="thoughtspace-description">
+        Thoughtspace is a place to pause, reflect, and explore your thoughts through guided reflection and meaningful conversations.
       </div>
     </section>
 
