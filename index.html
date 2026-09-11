@@ -76,7 +76,19 @@
   .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
   .stat{background:#f8fafc;border:1px solid var(--line);padding:15px;border-radius:14px}
   .stat strong{font-size:23px;display:block}.stat span{font-size:11px;color:var(--muted)}
-  .history{margin-top:20px}.history-item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:13px 0;font-size:13px}
+  .history{margin-top:20px}
+  #history{
+    height:500px;
+    max-height:500px;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    padding-right:8px;
+    scrollbar-width:auto;
+    box-sizing:border-box;
+}
+#history .history-item{min-height:50px;box-sizing:border-box;flex-shrink:0}
+  .history-item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:13px 0;font-size:13px}
+
   .pill{font-size:11px;padding:5px 9px;border-radius:99px;background:#f1f5f9;color:#475569}
   .full{grid-column:1/-1}
     .thoughtspace-link{
@@ -347,7 +359,7 @@ function renderDashboard(){
   $('stats').innerHTML = sorted.slice(0,3).map(m=>`<div class="stat"><strong>${Math.round(counts[m.id]/recent.length*100)}%</strong><span>${m.emoji} ${m.label}</span></div>`).join('') ||
     '<div class="stat"><strong>0%</strong><span>No mood data</span></div>';
 
-  $('history').innerHTML = entries.slice(-8).reverse().map(e=>{
+  $('history').innerHTML = [...entries].sort((a,b)=>new Date(b.date)-new Date(a.date)).map(e=>{
     const m=MOODS.find(x=>x.id===e.mood);
     return `<div class="history-item"><span>${m?.emoji||''} <strong>${m?.label||e.mood}</strong>${e.note?` — ${escapeHtml(e.note)}`:''}</span><span class="pill">${new Date(e.date).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</span></div>`;
   }).join('') || '<div style="padding:18px 0;color:#64748b;font-size:13px">No check-ins yet. Your first one will appear here.</div>';
